@@ -91,16 +91,43 @@ export default function Destinations() {
 
       {/* Destinations Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {filtered.map((destination) => (
-            <DestinationCard
-              key={destination.id}
-              destination={destination}
-              isFavorite={isFavorite(destination.id)}
-              onToggleFavorite={() => toggleFavorite(destination.id)}
-            />
-          ))}
-        </div>
+        {filtered.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-24 text-center">
+            <Search className="w-16 h-16 text-gray-300 dark:text-slate-600 mb-6" />
+            <h3 className="text-2xl font-bold text-gray-500 dark:text-slate-400 mb-3">
+              No destinations found
+            </h3>
+            <p className="text-gray-400 dark:text-slate-500 mb-8 max-w-md">
+              We couldn&apos;t find any destinations matching{" "}
+              {searchQuery ? (
+                <span className="font-semibold text-teal-600 dark:text-teal-400">&quot;{searchQuery}&quot;</span>
+              ) : (
+                <span className="font-semibold text-teal-600 dark:text-teal-400">{activeFilter}</span>
+              )}. Try a different search or reset the filters.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setSearchQuery("");
+                setActiveFilter("All Destinations");
+              }}
+              className="px-8 py-3 bg-teal-500 hover:bg-teal-600 text-white rounded-full font-semibold transition shadow-md"
+            >
+              Clear Filters
+            </button>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {filtered.map((destination) => (
+              <DestinationCard
+                key={destination.id}
+                destination={destination}
+                isFavorite={isFavorite(destination.id)}
+                onToggleFavorite={() => toggleFavorite(destination.id)}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* CTA Section */}
@@ -115,7 +142,7 @@ export default function Destinations() {
 
           <button
             type="button"
-            onClick={() => navigate("/features")}
+            onClick={() => navigate("/trip-planner")}
             className="bg-orange-500 hover:bg-orange-600 cursor-pointer text-white px-10 py-4 rounded-lg font-semibold transition text-lg shadow-md dark:bg-orange-400 dark:hover:bg-orange-500"
           >
             Plan Your Trip
