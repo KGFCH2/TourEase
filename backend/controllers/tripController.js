@@ -2,7 +2,7 @@ const OpenAI = require("openai");
 const weatherService = require("../services/weatherService");
 
 const openai = new OpenAI({
-  apiKey: process.env.OPENROUTER_API_KEY,
+  apiKey: process.env.OPENROUTER_API_KEY || "dummy-key-for-local-dev",
   baseURL: "https://openrouter.ai/api/v1",
 });
 
