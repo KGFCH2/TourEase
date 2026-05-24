@@ -100,9 +100,8 @@ export default function Navigation() {
       `}</style>
 
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-950 bg-gradient-to-b from-teal-50/50 to-transparent dark:from-gray-800/50 shadow-md border-b border-gray-200 dark:border-gray-800">
-        <div className="w-full px-4 sm:px-8 lg:px-12">
-          <div className="flex h-20 items-center justify-between">
-            {/* LOGO */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-4 lg:px-8 flex flex-row gap-5">
+          {/* LOGO */}
             <div
               onClick={handleLogoClick}
               className="cursor-pointer flex items-center gap-2 group shrink-0"
@@ -115,6 +114,7 @@ export default function Navigation() {
                 TourEase
               </span>
             </div>
+          <div className="flex h-16 items-center justify-between">
 
             {/* DESKTOP NAV */}
             <div className="hidden md:flex items-center gap-2 flex-1 justify-center px-8">
@@ -183,10 +183,9 @@ export default function Navigation() {
               {!isLoggedIn ? (
                 <Link
                   to="/login"
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg font-semibold transition whitespace-nowrap text-base shadow-lg hover:shadow-xl"
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-semibold transition items-center w-33"
                 >
-                  Get Started
-                </Link>
+                  Get Started</Link>
               ) : (
                 <button
                   onClick={handleLogout}
